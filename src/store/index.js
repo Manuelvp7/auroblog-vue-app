@@ -1,12 +1,12 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import postsModule from './modules/posts/index.js';
+import authModule from './modules/auth/index.js'
+
 
 export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+    modules: {
+        posts: postsModule,
+        auth: authModule
+    }
+
+});
