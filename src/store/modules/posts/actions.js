@@ -34,20 +34,16 @@ export default {
             content: data.content,
         };
 
-
         const token = context.rootGetters.api_token;
 
-
-        const response = await fetch(
-            "http://localhost:8000/api/posts/" + data.id, {
-                method: "PUT",
-                headers: {
-                    Authorization: "Bearer " + token,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(postData),
-            }
-        );
+        const response = await fetch("http://localhost:8000/api/posts/" + data.id, {
+            method: "PUT",
+            headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(postData),
+        });
 
         // const reponseData = await response.json();
 
@@ -59,6 +55,31 @@ export default {
             ...postData,
         });
     },
+    async deletePost(context, data) {
+
+        console.log('deleting this post' + data);
+        const token = context.rootGetters.api_token;
+
+        const response = await fetch("http://localhost:8000/api/posts/" + data, {
+            method: "DELETE",
+            headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+            }
+
+        });
+
+        console.log(response);
+
+        if (!response.ok) {
+            console.log(response);
+        }
+
+        context.commit("deletePost", {
+            data,
+        });
+    },
+
     async loadPosts(context) {
         const response = await fetch(`http://localhost:8000/api/posts`, {
             method: "GET",

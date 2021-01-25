@@ -13,6 +13,7 @@
         </div>
         <p v-if="!formIsValid"> Please fix the above errors and submit again.</p>
         <base-button v-if="editing"> Update </base-button>
+        <base-button v-if="editing" @click="deletePost"> Delete </base-button>
         <base-button v-else> Post </base-button>
     </form>
 </template>
@@ -89,6 +90,10 @@ export default {
           }
 
         },
+        deletePost(){
+          this.$store.dispatch('posts/deletePost', this.id);
+          this.$router.push('/posts');
+        }
 
     },
 }

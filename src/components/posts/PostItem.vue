@@ -25,7 +25,7 @@ export default{
         },
         postCreationDate(){
           return moment(this.created_at).format('LL');
-        }
+        },
     }
 }
 </script>
